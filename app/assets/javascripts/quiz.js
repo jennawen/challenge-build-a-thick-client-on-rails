@@ -8,7 +8,7 @@
 //   })
 //   .done(function(data){
 //     $.each(data.quizzes, function(index, quiz){
-//       var newQuiz = $("#quiz").clone()
+//       var newQuiz = $(".quiz").clone()
 //       newQuiz.text(quiz.name)
 //       $(".container").append(newQuiz)
 //       newQuiz.on("click", function(e){

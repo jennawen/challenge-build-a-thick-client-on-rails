@@ -15,7 +15,7 @@
 var Controller = {
   // initialize with your event listeners and your quizzes
   initialize: function(e) {
-    $('.container').on('click', '#quiz', this.getNextQuestion.bind(this))
+    $('.container').on('click', '.quiz', this.getNextQuestion.bind(this))
     $('.container').on('click', '#choice', this.postAnswer.bind(this))
     this.getQuizzes()
   },
@@ -34,9 +34,19 @@ var Controller = {
       })
   },
 
-  getNextQuestion: function(data){
-    console.log(data)
-    console.log(data.firstchild)
+  getNextQuestion: function(event){
+    $(".quiz").hide();
+    console.log(event);
+    $.ajax({
+      type: "GET",
+      url: "quizzes/1/questions/next.json",
+      data: { session_key: 12324 }
+    })
+      .done (function(questionData){
+        var $renderedQuestion = Views.questionView(questionData)
+        $(".container").append($renderedQuestion)
+      })
+
   },
 
   postAnswer: function(data){
@@ -50,10 +60,15 @@ var Controller = {
 
 // SET UP VIEWS
 var Views = {
-
   quiz: function(quiz){
-    var newQuiz = $("#quiz").clone()
+    var newQuiz = $(".quiz").clone();
     return newQuiz.text(quiz.name)
+  },
+
+  questionView: function(questionData){
+    var newQuestion = $("#question").clone();
+    console.log(questionData.question.question)
+    return newQuestion.text(questionData.question.question)
   }
 }
 

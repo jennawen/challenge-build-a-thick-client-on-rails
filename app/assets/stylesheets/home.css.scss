@@ -32,7 +32,7 @@ body {
   margin: 3em;
 }
 
-#quiz{
+.quiz{
   text-align: center;
   font-size: 4em;
   font-weight: 900;
@@ -44,7 +44,7 @@ body {
 
 }
 
-#quiz:hover{
+.quiz:hover{
   text-shadow: 10px 0px 50px #F1C40F;
   transition: text-shadow 1s;
 
