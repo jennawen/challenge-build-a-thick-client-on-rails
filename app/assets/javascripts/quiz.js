@@ -1,7 +1,5 @@
-var currentQuiz = null;
-var currentQuestion = null;
+var currentQuiz, currentQuestion;
 var userKey = (new Date()).toString()
-var moreQuestions = true;
 
 var startProgram = function(){
   $.ajax({
@@ -9,25 +7,19 @@ var startProgram = function(){
   url: "quizzes.json"
   })
   .done(function(data){
+    console.log("get quizzes")
     $.each(data.quizzes, function(index, quiz){
       var newQuiz = $("#quiz").clone()
-      newQuiz.html(quiz.name)
+      newQuiz.text(quiz.name)
       $(".container").append(newQuiz)
       newQuiz.on("click", function(e){
-        $("#quiz").hide()
+        $(newQuiz).hide();
         currentQuiz = quiz.quiz_id
-        beginQuiz();
+        next();
       })
     })
   });
 }
-
-var beginQuiz = function(){
-  // while (moreQuestions === true)
-  // {
-    next()
-  // }
-};
 
 var next = function(){
   $.ajax({
@@ -61,7 +53,6 @@ var answer = function(choiceId){
   })
   .done(function(data){
     if(data.status.more_questions === false){
-      moreQuestions = false;
       $(".question").hide()
       showResults(data.status);
     }
@@ -76,5 +67,7 @@ var showResults = function(data_results){
   $(".num_incorrect").text(data_results.num_incorrect)
   $("#results").show()
 }
+
+
 
   startProgram()
