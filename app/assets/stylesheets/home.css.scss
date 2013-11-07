@@ -1,11 +1,35 @@
+#wrapper {
+  width: 800px;
+  margin: auto;
+  background-color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+  height: 200px;
+}
+
+body {
+  margin-left: 20px;
+  background-color: lightgray;
+
+}
+
+
 .container {
   margin: 3em;
 }
 
 #quiz{
-  display: none;
+
 }
 
-#question{
-  display: none;
+.question{
+ font-size: 2em;
+}
+
+#choice{
+  font-size: .5em;
+}
+
+#results{
+  display:none;
 }
